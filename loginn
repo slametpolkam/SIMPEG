@@ -1,0 +1,34 @@
+<html>
+	<h1><center>From Login</center></h1>
+	<br>
+	<center><form method="POST" action="periksa.php">
+	User name &nbsp;&nbsp;<input type="text" name="nama">
+	<br>
+	sandi&nbsp;&nbsp;<input type="password" name="sandi">
+	<br> 
+	<input type="submit" value="login">
+	</form></center>
+	</html>
+  
+  
+  <?php 
+mysql_connect("localhost","root","");
+mysql_select_db("latihan");
+?>
+
+<?php
+ include "koneksi.php";
+ $nama =$_POST ["nama"];
+ $sandi =$_POST ["sandi"];
+ $query="select *from user where nama='$nama' and 
+ sandi='$sandi'";
+ $hasil= mysql_query ($query);
+ if (mysql_num_rows($hasil))
+ {
+	echo"<h1>selamat datang $nama</h2>";
+  }
+  else 
+  {
+	echo"<h1> mohon maaf tidak bisa masuk</h2>";
+  }
+?>
